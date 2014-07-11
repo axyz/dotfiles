@@ -1,0 +1,4 @@
+UnBundle 'Shougo/neocomplcache'
+UnBundle 'bling/vim-airline'
+let g:spf13_use_powerline = 1
+Bundle 'Lokaltog/powerline'

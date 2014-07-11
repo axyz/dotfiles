@@ -1,0 +1,22 @@
+set shell=/bin/bash
+set lazyredraw
+
+if has('gui_running')
+    set t_Co=256
+    let g:solarized_termcolors=256
+    color solarized
+    set guifont=Sauce\ Code\ Powerline\ Medium\ 14
+endif
+
+set sw=2
+set ts=2
+set sts=2
+
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols = 'fancy'
+
+imap jj <ESC>
+nmap tn :tabnew<CR>
+nmap tj :tabnext<CR>
+nmap tk :tabprevious<CR>
+nmap tc :tabclose<CR>

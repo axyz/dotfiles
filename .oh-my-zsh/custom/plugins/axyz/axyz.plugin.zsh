@@ -2,6 +2,7 @@ alias y='yaourt'
 alias p='pacman'
 alias bu='rsync -av --force --delete'
 alias :q='exit'
+alias em='emacs -nw'
 
 function storamount() {
   sudo mkdir /mnt/stora

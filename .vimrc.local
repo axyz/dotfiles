@@ -12,9 +12,6 @@ set sw=2
 set ts=2
 set sts=2
 
-let g:airline_powerline_fonts = 1
-let g:Powerline_symbols = 'fancy'
-
 imap jj <ESC>
 nmap tn :tabnew<CR>
 nmap tj :tabnext<CR>

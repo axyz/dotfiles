@@ -48,7 +48,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-PATH=$PATH:/home/axyz/bin:/home/axyz/.gem/ruby/2.0.0/bin:/home/axyz/.gem/ruby/2.1.0/bin:/home/axyz/.cabal/bin:
+PATH=$PATH:/home/axyz/bin:/home/axyz/.gem/ruby/2.0.0/bin:/home/axyz/.gem/ruby/2.1.0/bin:/home/axyz/.cabal/bin:/home/axyz/app/adt/sdk/platform-tools/
 export PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'

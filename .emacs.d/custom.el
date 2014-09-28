@@ -1,4 +1,5 @@
 (load-theme 'solarized-dark t)
+(set-default-font "Sauce Code Powerline")
 
 ;; <C-x r j e> opens emacs customization file 
 (set-register ?e '(file . "~/.emacs.d/custom.el"))

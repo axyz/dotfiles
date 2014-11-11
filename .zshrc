@@ -59,6 +59,6 @@ export PATH=$PATH:~/go/bin
 
 export EDITOR='vim'
 
-export PYTHONPATH=/usr/lib/python3.4/site-packages
+# export PYTHONPATH=/usr/lib/python3.4/site-packages
 
 . /usr/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh

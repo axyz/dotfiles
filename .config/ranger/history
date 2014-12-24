@@ -1,0 +1,32 @@
+?
+open_with 1
+open_with jj
+open_with 2
+q
+open_with vim
+open_with transmission
+open_with tranmission-gtk
+delete
+shell ./%f
+shell tar -xfzf %f
+search csv
+
+shel
+search satan
+search bulli
+shell 7z x %f
+search budd
+search rel
+search bell
+shell wine64 %f
+open_with wine64
+open_with wine
+search cabri
+search go
+search they
+open_with 
+search desk
+search scr
+search talk
+shell gimp %f
+search lein

@@ -1,7 +1,7 @@
 
 [Default Applications]
 audio/mpeg=deadbeef.desktop
-audio/flac=deadbeef.desktop
+audio/x-flac=deadbeef.desktop
 audio/ogg=deadbeef.desktop
 inode/directory=rox.desktop
 application/pdf=llpp.desktop

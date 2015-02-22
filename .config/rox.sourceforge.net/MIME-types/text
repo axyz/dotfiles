@@ -1,2 +1,2 @@
 #! /bin/sh
-exec ec "$@"
+exec urxvtc -e vim "$@"

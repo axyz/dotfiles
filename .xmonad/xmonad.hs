@@ -95,6 +95,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    
+    -- launch ranger
+    , ((modm,               xK_apostrophe ), spawn "urxvtc -e ranger")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)

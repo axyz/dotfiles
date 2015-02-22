@@ -62,3 +62,7 @@ export EDITOR='vim'
 # export PYTHONPATH=/usr/lib/python3.4/site-packages
 
 . /usr/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh
+
+bindkey -v
+
+export KEYTIMEOUT=1

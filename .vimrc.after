@@ -1,0 +1,8 @@
+color molokai
+set lazyredraw
+
+imap jj <ESC>
+nmap tn :tabnew<CR>
+nmap tj :tabnext<CR>
+nmap tk :tabprevious<CR>
+nmap tc :tabclose<CR>

@@ -48,7 +48,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-PATH=$PATH:/home/axyz/bin:/home/axyz/.gem/ruby/2.0.0/bin:/home/axyz/.gem/ruby/2.1.0/bin:/home/axyz/.cabal/bin:/home/axyz/app/adt/sdk/platform-tools/
+PATH=$PATH:/home/axyz/bin:/home/axyz/.gem/ruby/2.2.0/bin:/home/axyz/.cabal/bin:/home/axyz/app/adt/sdk/platform-tools/
 export PATH
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
@@ -56,6 +56,8 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export GOPATH=~/go
 
 export PATH=$PATH:~/go/bin
+
+export PYTHONPATH=/usr/lib/python3.4/site-packages
 
 export EDITOR='vim'
 

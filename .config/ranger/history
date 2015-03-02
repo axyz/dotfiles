@@ -30,3 +30,4 @@ search scr
 search talk
 shell gimp %f
 search lein
+shell geeqie %f

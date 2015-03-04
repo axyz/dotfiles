@@ -32,8 +32,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
-  " insert new line after { and indent
+  " insert new line after {,[,( and indent
   inoremap {<CR> {<CR>}<Esc><S-o>
+  inoremap [<CR> [<CR>]<Esc><S-o>
+  inoremap (<CR> (<CR>)<Esc><S-o>
 Plugin 'scrooloose/syntastic'
   let g:syntastic_check_on_open=1
 Plugin 'Valloric/YouCompleteMe'

@@ -31,3 +31,7 @@ search talk
 shell gimp %f
 search lein
 shell geeqie %f
+search rice
+search blind
+shell deadbeef %f
+find scr

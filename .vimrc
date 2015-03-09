@@ -60,6 +60,7 @@ Plugin 'SirVer/ultisnips'
   let g:UltiSnipsExpandTrigger="<c-j>"
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'christoomey/vim-tmux-navigator'
 
 
 " HTML

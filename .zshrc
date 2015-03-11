@@ -68,3 +68,4 @@ export EDITOR='vim'
 bindkey -v
 
 export KEYTIMEOUT=1
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

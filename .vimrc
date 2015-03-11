@@ -21,6 +21,7 @@ Plugin 'gmarik/Vundle.vim'
 " SANE DEFAULTS
 " -------------
 Plugin 'tpope/vim-sensible'
+set hidden
 
 " TOOLS
 " -----
@@ -28,7 +29,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
   map <C-e> :NERDTreeToggle<CR>
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
@@ -143,3 +144,5 @@ nmap tj :tabnext<CR>
 nmap tk :tabprevious<CR>
 nmap tc :tabclose<CR>
 
+set rtp+=~/.fzf
+nnoremap <silent> <C-p> :FZF -m<CR>

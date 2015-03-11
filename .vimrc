@@ -27,6 +27,7 @@ set hidden
 " -----
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
+  autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
 Plugin 'scrooloose/nerdtree'
   map <C-e> :NERDTreeToggle<CR>
 " Plugin 'kien/ctrlp.vim'

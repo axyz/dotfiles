@@ -5,6 +5,11 @@ alias :q='exit'
 alias em='emacsclient -t'
 alias emacs='emacsclient -c'
 
+# Make directory and change into it.
+function mcd() {
+  mkdir -p "$1" && cd "$1";
+}
+
 function storamount() {
   sudo mkdir /mnt/stora
   sudo mount -o "vers=3" -o nolock 192.168.1.2:/home/0common/ /mnt/stora/

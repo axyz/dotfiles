@@ -65,6 +65,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'rking/ag.vim'
+  let g:agprg="ag --column --vimgrep --depth -1"
 Plugin 'majutsushi/tagbar'
   nmap <F8> :TagbarToggle<CR>
 Plugin 'airblade/vim-gitgutter'

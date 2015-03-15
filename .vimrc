@@ -22,6 +22,21 @@ Plugin 'gmarik/Vundle.vim'
 " -------------
 Plugin 'tpope/vim-sensible'
 set hidden
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it for commit messages, when the position is invalid, or when
+" inside an event handler (happens when dropping a file on gvim).
+autocmd BufReadPost *
+\ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "normal g`\"" |
+\ endif
 
 " TOOLS
 " -----
@@ -30,7 +45,6 @@ Plugin 'tpope/vim-fugitive'
   autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
 Plugin 'scrooloose/nerdtree'
   map <C-e> :NERDTreeToggle<CR>
-" Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
@@ -50,10 +64,9 @@ Plugin 'Valloric/YouCompleteMe'
   set completeopt-=preview
 Plugin 'lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
   nmap <F8> :TagbarToggle<CR>
-Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mbbill/undotree'
   nnoremap <F5> :UndotreeToggle<cr>
@@ -63,6 +76,9 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'christoomey/vim-run-interactive'
+Plugin 'tpope/vim-eunuch'
 
 
 " HTML
@@ -102,6 +118,9 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
   autocmd BufNewFile,BufRead *.txt,*.mkd,*.md set tw=80
+  " Enable spellchecking for Markdown
+  autocmd FileType markdown setlocal spell
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -145,5 +164,84 @@ nmap tj :tabnext<CR>
 nmap tk :tabprevious<CR>
 nmap tc :tabclose<CR>
 
+" Run commands that require an interactive shell
+nnoremap <Leader>r :RunInInteractiveShell<space>
+
 set rtp+=~/.fzf
 nnoremap <silent> <C-p> :FZF -m<CR>
+" List of buffers
+function! BufList()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! BufOpen(e)
+  execute 'buffer '. matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><space> :call fzf#run({
+\   'source':  reverse(BufList()),
+\   'sink':    function('BufOpen'),
+\   'options': '+m',
+\   'down':    '40%'
+\ })<CR>
+
+
+" Open files in horizontal split
+nnoremap <silent> <Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+
+" Open files in vertical horizontal split
+nnoremap <silent> <Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
+
+
+cnoremap <silent> <c-l> <c-\>eGetCompletions()<cr>
+"add an extra <cr> at the end of this line to automatically accept the fzf-selected completions.
+
+function! Lister()
+    call extend(g:FZF_Cmd_Completion_Pre_List,split(getcmdline(),'\(\\\zs\)\@<!\& '))
+endfunction
+
+function! CmdLineDirComplete(prefix, options, rawdir)
+    let l:dirprefix = matchstr(a:rawdir,"^.*/")
+    if isdirectory(expand(l:dirprefix))
+        return join(a:prefix + map(fzf#run({
+                    \'options': a:options . ' --select-1  --query=' .
+                    \ a:rawdir[matchend(a:rawdir,"^.*/"):len(a:rawdir)],
+                    \'dir': expand(l:dirprefix)
+                    \}),
+                    \'"' . escape(l:dirprefix, " ") . '" . escape(v:val, " ")'))
+    else
+        return join(a:prefix + map(fzf#run({
+                    \'options': a:options . ' --query='. a:rawdir }),
+                    \'escape(v:val, " ")'))
+        "dropped --select-1 to speed things up on a long query
+endfunction
+
+function! GetCompletions()
+    let g:FZF_Cmd_Completion_Pre_List = []
+    let l:cmdline_list = split(getcmdline(), '\(\\\zs\)\@<!\& ', 1)
+    let l:Prefix = l:cmdline_list[0:-2]
+    execute "silent normal! :" . getcmdline() . "\<c-a>\<c-\>eLister()\<cr>\<c-c>"
+    let l:FZF_Cmd_Completion_List = g:FZF_Cmd_Completion_Pre_List[len(l:Prefix):-1]
+    unlet g:FZF_Cmd_Completion_Pre_List
+    if len(l:Prefix) > 0 && l:Prefix[0] =~
+                \ '^ed\=i\=t\=$\|^spl\=i\=t\=$\|^tabed\=i\=t\=$\|^arged\=i\=t\=$\|^vsp\=l\=i\=t\=$'
+                "single-argument file commands
+        return CmdLineDirComplete(l:Prefix, "",l:cmdline_list[-1])
+    elseif len(l:Prefix) > 0 && l:Prefix[0] =~
+                \ '^arg\=s\=$\|^ne\=x\=t\=$\|^sne\=x\=t\=$\|^argad\=d\=$'
+                "multi-argument file commands
+        return CmdLineDirComplete(l:Prefix, '--multi', l:cmdline_list[-1])
+    else
+        return join(l:Prefix + fzf#run({
+                    \'source':l:FZF_Cmd_Completion_List,
+                    \'options': '--select-1 --query='.shellescape(l:cmdline_list[-1])
+                    \}))
+    endif
+endfunction

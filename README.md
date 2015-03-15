@@ -3,3 +3,5 @@ to make vim youcomplete me work you need to:
 - on arch you could have to install libtinfo from aur
 
 https://github.com/junegunn/fzf
+
+https://github.com/ggreer/the_silver_searcher

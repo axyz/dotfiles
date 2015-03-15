@@ -5,3 +5,5 @@ to make vim youcomplete me work you need to:
 https://github.com/junegunn/fzf
 
 https://github.com/ggreer/the_silver_searcher
+
+https://github.com/ramitos/jsctags

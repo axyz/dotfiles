@@ -197,6 +197,7 @@ Plugin 'eagletmt/ghcmod-vim'
 " PYTHON
 " ------
 Plugin 'klen/python-mode'
+  let g:pymode_rope = 0 " Check if it could be removed with future upgrades
 
 " GO
 " --

@@ -21,6 +21,7 @@ Plugin 'gmarik/Vundle.vim'
 " SANE DEFAULTS
 " -------------
 Plugin 'tpope/vim-sensible'
+let mapleader = ","
 set hidden
 set nobackup
 set nowritebackup
@@ -168,6 +169,7 @@ endfunction
 " END FZF "
 """""""""""
 
+
 " HTML
 " ----
 Plugin 'mattn/emmet-vim'
@@ -213,6 +215,10 @@ Plugin 'plasticboy/vim-markdown'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" TWIG
+" ----
+Plugin 'evidens/vim-twig'
+
 " ==============================================================================
 " END PLUGINS
 " ==============================================================================
@@ -221,7 +227,6 @@ filetype plugin indent on    " required
 " ==============================================================================
 " OPTIONS
 " ==============================================================================
-let mapleader = ","
 set lazyredraw
 set number
 set colorcolumn=80
@@ -250,6 +255,5 @@ nmap tn :tabnew<CR>
 nmap tj :tabnext<CR>
 nmap tk :tabprevious<CR>
 nmap tc :tabclose<CR>
-
 
 

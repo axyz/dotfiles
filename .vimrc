@@ -23,9 +23,62 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 let mapleader = ","
 set hidden
+set wildmode=list:longest,list:full " completion menu behaves more like cli
+
+set number
+set colorcolumn=80
+
+set hlsearch " highlight search things
+
+set smartindent
+" tab settings
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+set shiftround
+
+" Powerline
+" Always display the statusline in all windows
+set laststatus=2
+" Always display the tabline, even if there is only one tab
+set showtabline=2
+" Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set noshowmode
+
+set undodir=$HOME/.vim/.undo
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+" do not create swap files!
 set nobackup
-set nowritebackup
+set writebackup
+set backupcopy=no
 set noswapfile
+
+set modeline
+set modelines=5
+set scrolloff=3 " scroll 3 lines before bottom/top
+set autowrite
+
+set cursorline " highlights the cursor line
+set nowrap
+set linebreak " this will not break whole words while wrap is enabled
+set showbreak=…
+
+set lazyredraw
+set ttyfast " improves redrawing for newer computers
+
+" folding
+set foldenable " enable folding
+set foldmethod=manual " detect triple-{ style fold markers
+set foldlevel=99
+
+" search
+set ignorecase " ignore case when searching
+set smartcase " but case-sensitive if expression contains a capital letter.
+set gdefault " assume global when searching or substituting
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -83,6 +136,7 @@ Plugin 'christoomey/vim-run-interactive'
   " Run commands that require an interactive shell
   nnoremap <Leader>r :RunInInteractiveShell<space>
 Plugin 'tpope/vim-eunuch'
+Plugin 'shougo/vimproc.vim'
 
 """""""
 " FZF "
@@ -224,27 +278,15 @@ Plugin 'evidens/vim-twig'
 " END PLUGINS
 " ==============================================================================
 
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
 
 " ==============================================================================
 " OPTIONS
 " ==============================================================================
-set lazyredraw
-set number
-set colorcolumn=80
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-
 set background=dark
 colorscheme solarized
-
-" Powerline
-" Always display the statusline in all windows
-set laststatus=2
-" Always display the tabline, even if there is only one tab
-set showtabline=2
-" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set noshowmode
 
 
 " ==============================================================================

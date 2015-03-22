@@ -70,5 +70,5 @@ bindkey -v
 export KEYTIMEOUT=1
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='ag --depth -1 -l -g -S ""'
+export FZF_DEFAULT_COMMAND='ag -S --depth -1 -l -g ""'
 

@@ -38,11 +38,6 @@ set softtabstop=2
 set expandtab
 set shiftround
 
-" Powerline
-" Always display the statusline in all windows
-set laststatus=2
-" Always display the tabline, even if there is only one tab
-set showtabline=2
 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set noshowmode
 
@@ -108,6 +103,8 @@ Plugin 'Raimondi/delimitMate'
   inoremap (<CR> (<CR>)<Esc><S-o>
 Plugin 'scrooloose/syntastic'
   let g:syntastic_check_on_open=1
+Plugin 'bling/vim-airline'
+  let g:airline_powerline_fonts = 1
 Plugin 'Valloric/YouCompleteMe'
   " These are the tweaks I apply to YCM's config, you don't need them but they
   " might help.
@@ -298,5 +295,4 @@ nmap tn :tabnew<CR>
 nmap tj :tabnext<CR>
 nmap tk :tabprevious<CR>
 nmap tc :tabclose<CR>
-
 

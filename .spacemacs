@@ -7,7 +7,7 @@
   (setq-default
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("~/.my-spacemacs-layers")
+   dotspacemacs-configuration-layer-path '("~/.my-spacemacs-layers/")
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -29,6 +29,8 @@
       php
       html
       haskell
+      trello
+      simplenote
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -146,10 +148,38 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (setq js2-basic-offset 2)
+  (setq js2-bounce-indent-p t)
   (setq css-indent-offset 2)
+  (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.react.js$" . web-mode))
   (setq python-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-attr-indent-offset 2)
+  (setq flycheck-checkers '(javascript-eslint))
+
+  (require 'flycheck)
+  ;; disable jshint since we prefer eslint checking
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
+
+  ;; use eslint with web-mode for jsx files
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+
+  ;; disable json-jsonlist checking for json files
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(json-jsonlist)))
+
   (setq org-agenda-files (list "~/Dropbox/org/"))
   (evil-leader/set-key "oa" 'helm-org-agenda-files-headings)
+
+  (require 'simplenote2)
+  (setq simplenote2-email "axyzxp@gmail.com")
+  (setq simplenote2-password nil)
+  (simplenote2-setup)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

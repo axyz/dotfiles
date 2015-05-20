@@ -148,10 +148,18 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (setq js2-basic-offset 2)
-  (setq js2-bounce-indent-p t)
+  ;; JSX in `web-mode`
+  (add-to-list 'auto-mode-alist '("\\.jsx" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.react.js" . web-mode))
+
+  ;; JSX tern support
+  (add-hook 'web-mode-hook '(lambda ()
+                              (when (equal web-mode-content-type "jsx")
+                                (tern-mode)
+                                (company-mode)
+                                )))
+
   (setq css-indent-offset 2)
-  (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.react.js$" . web-mode))
   (setq python-indent-offset 2)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)

@@ -157,6 +157,7 @@ layers configuration."
                               (when (equal web-mode-content-type "jsx")
                                 (tern-mode)
                                 (company-mode)
+                                (flycheck-mode)
                                 )))
 
   (setq css-indent-offset 2)
@@ -168,14 +169,14 @@ layers configuration."
   (setq flycheck-checkers '(javascript-eslint))
 
   (require 'flycheck)
+  ;; turn on flychecking globally
+  (add-hook 'after-init-hook #'global-flycheck-mode)
   ;; disable jshint since we prefer eslint checking
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint)))
-
   ;; use eslint with web-mode for jsx files
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-
   ;; disable json-jsonlist checking for json files
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers

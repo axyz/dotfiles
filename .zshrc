@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh configuration.
+fpath=( "$HOME/.zfunctions" $fpath )
 ZSH=/usr/share/oh-my-zsh/
 ZSH_CUSTOM=~/.oh-my-zsh/custom/
 
@@ -45,7 +46,8 @@ plugins=(git axyz archlinux web-search zsh-syntax-highlighting)
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
-PURE_GIT_PULL=0
+
+# PURE_GIT_PULL=0
 
 PATH=$PATH:/home/axyz/bin:/home/axyz/.gem/ruby/2.2.0/bin:/home/axyz/.cabal/bin:/home/axyz/app/adt/sdk/platform-tools/
 export PATH

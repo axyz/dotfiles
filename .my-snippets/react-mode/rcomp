@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: React Component
+# --
+import React from 'react';
+
+class ${1:Name} extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return $0;
+  }
+}
+$1.propTypes = {};
+$1.defaultProps = {};
+
+export default $1;

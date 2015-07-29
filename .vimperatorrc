@@ -1,6 +1,9 @@
 set gui=none
 set noscrollbars
 
+noremap j 4j
+noremap k 4k
+
 "javascript to hide statusbar
 noremap <silent> <F8> :js toggle_bottombar()<CR>
 noremap : :js toggle_bottombar('on')<CR>:

@@ -94,6 +94,7 @@ Plugin 'tpope/vim-fugitive'
   autocmd BufNewFile,BufRead fugitive://* set bufhidden=delete
 Plugin 'scrooloose/nerdtree'
   map <C-e> :NERDTreeToggle<CR>
+  let NERDTreeQuitOnOpen = 1
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
@@ -117,6 +118,7 @@ Plugin 'lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'rking/ag.vim'
   let g:agprg="ag --column --vimgrep --depth -1"
+Plugin 'henrik/vim-qargs'
 Plugin 'majutsushi/tagbar'
   nmap <F8> :TagbarToggle<CR>
 Plugin 'airblade/vim-gitgutter'
@@ -223,7 +225,7 @@ endfunction
 
 " HTML
 " ----
-Plugin 'mattn/emmet-vim'
+Plugin 'rstacruz/sparkup'
 Plugin 'othree/html5.vim'
 
 " CSS
@@ -237,18 +239,15 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
 
-" COFFEE
-" ------
-Plugin 'kchmck/vim-coffee-script'
-
 " HASKELL
 " -------
+Plugin 'raichoo/haskell-vim'
+Plugin 'Twinside/vim-hoogle'
 Plugin 'eagletmt/ghcmod-vim'
-
-" PYTHON
-" ------
-Plugin 'klen/python-mode'
-  let g:pymode_rope = 0 " Check if it could be removed with future upgrades
+  autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+Plugin 'eagletmt/neco-ghc'
+  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+  autocmd FileType haskell let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 " GO
 " --
@@ -275,12 +274,9 @@ Plugin 'evidens/vim-twig'
 " END PLUGINS
 " ==============================================================================
 
-if filereadable(glob("~/.vimrc.local"))
-    source ~/.vimrc.local
-endif
 
 " ==============================================================================
-" OPTIONS
+" THEME
 " ==============================================================================
 set background=dark
 colorscheme solarized
@@ -295,4 +291,14 @@ nmap tn :tabnew<CR>
 nmap tj :tabnext<CR>
 nmap tk :tabprevious<CR>
 nmap tc :tabclose<CR>
+" Open file prompt with current path
+nmap <leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+
+
+" ==============================================================================
+" LOCAL CUSTOMIZATION
+" ==============================================================================
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
 

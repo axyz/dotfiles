@@ -28,15 +28,18 @@
       gtags
       xkcd
       themes-megapack
+      dash
       dockerfile
       git
       evil-snipe
       org
       markdown
+      emacs-lisp
       clojure
       common-lisp
       javascript
       react
+      pandoc
       php
       python
       rcirc
@@ -49,6 +52,7 @@
       shell
       shell-scripts
       search-engine
+      spell-checking
       yaml
       vinegar
      )
@@ -192,6 +196,7 @@ before layers configuration."
                               (ruby . t)
                               (perl . t)
                               (python . t))
+   org-babel-js-cmd "babel-node"
    ;; js2-mode
    js2-basic-offset 2
 
@@ -202,6 +207,9 @@ before layers configuration."
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
+
+   dash-helm-dash-docset-path "~/.local/share/Zeal/Zeal/docsets/"
+   helm-dash-browser-func 'eww
 
    ;; simplenote2
    simplenote2-email "axyzxp@gmail.com"
@@ -236,6 +244,7 @@ before layers configuration."
   (with-eval-after-load 'web-mode
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
 
   (with-eval-after-load 'yasnippet

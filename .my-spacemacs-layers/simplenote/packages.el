@@ -69,6 +69,8 @@ which require an initialization must be listed explicitly in the list.")
       (interactive)
       (helm-do-ag (concat simplenote2-directory "notes/")))
 
+    (add-hook 'simplenote2-note-mode-hook 'org-mode)
+
     :config
     (progn
       (evil-leader/set-key

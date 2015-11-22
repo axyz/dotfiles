@@ -22,6 +22,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Layout.IndependentScreens
+import XMonad.Hooks.EwmhDesktops
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -263,7 +264,7 @@ myManageHook = composeAll
 -- It will add EWMH event handling to your custom event hooks by
 -- combining them with ewmhDesktopsEventHook.
 --
-myEventHook = mempty
+myEventHook = fullscreenEventHook 
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -300,7 +301,7 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = xmonad $ ewmh defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

@@ -32,10 +32,10 @@ values."
      syntax-checking
      colors
      eyebrowse
-     gtags
      dash
      dockerfile
      elm
+     eww
      git
      evil-snipe
      org
@@ -92,6 +92,8 @@ values."
    ;; environment, otherwise it is strongly recommended to let it set to t.
    ;; (default t)
    dotspacemacs-elpa-https t
+   ;; Maximum allowed time in seconds to contact an ELPA repository.
+   dotspacemacs-elpa-timeout 5
    ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
@@ -141,6 +143,14 @@ values."
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m)
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   ;; These variables control whether separate commands are bound in the GUI to
+   ;; the key pairs C-i, TAB and C-m, RET.
+   ;; Setting it to a non-nil value, allows for separate commands under <C-i>
+   ;; and TAB or <C-m> and RET.
+   ;; In the terminal, these pairs are generally indistinguishable, so this only
+   ;; works in the GUI. (default nil)
+   dotspacemacs-distinguish-gui-tab nil
+   ;; (Not implemented) dotspacemacs-distinguish-gui-ret nil
    ;; The command key used for Evil commands (ex-commands) and
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
@@ -247,7 +257,6 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   (setq-default
-   major-mode 'org-mode
    browse-url-browser-function 'eww-browse-url
    org-babel-load-languages '((emacs-lisp . t)
                               (lisp . t)
@@ -278,6 +287,8 @@ user code."
    ;; simplenote2
    simplenote2-email "axyzxp@gmail.com"
    simplenote2-password nil
+
+   tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no"
   ))
 
 
@@ -292,17 +303,9 @@ user code."
   ;;   (flycheck-define-checker javascript-flow
   ;;     "A JavaScript syntax and style checker using Flow.
   ;;   See URL `http://flowtype.org/'."
-  ;;     :command ("flow" "check" source-original)
+  ;;     :command ("flow" source-original)
   ;;     :error-patterns
-  ;;     ((error line-start
-  ;;             (file-name)
-  ;;             ":"
-  ;;             line
-  ;;             ":"
-  ;;             (minimal-match (one-or-more not-newline))
-  ;;             ": "
-  ;;             (message (minimal-match (and (one-or-more anything) "\n")))
-  ;;             line-end))
+  ;;     ((error line-start (1+ nonl) ":" line ":" column ":" (message) line-end))
   ;;     :modes (js2-mode web-mode react-mode))
   ;;   (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
   ;;   (add-to-list 'flycheck-checkers 'javascript-flow 'append))
